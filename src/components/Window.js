@@ -1,6 +1,7 @@
 import React from 'react';
 
 import WindowHeader from './WindowHeader';
+import marked from 'marked';
 
 const Window = props => {
   const styles = {
@@ -19,6 +20,7 @@ const Window = props => {
         isMaximized={props.isMaximized}
         onIconClick={props.onIconClick}
       />
+      {marked('# Marked in browser\n\nRendered by **marked**.')};
     </div>
   );
 };
