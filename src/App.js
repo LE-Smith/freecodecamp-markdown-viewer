@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import Editor from './container/Editor';
+import Previewer from './container/Previewer';
+
+export const NONE = 'NONE';
+export const EDITOR = 'EDITOR';
+export const PREVIEWER = 'PREVIEWER';
+
 function App() {
+  const [maximizedWindow, setMaximizedWindow] = useState(NONE);
+
+  const styles = {
+    body: {
+      paddingBottom: 20,
+      backgroundColor: '#87B5B5',
+      height: '100vh',
+      width: '100vw',
+      position: 'absolute',
+    },
+  };
+
+  const onIconClickHandler = clickedWindow => {
+    if (clickedWindow === EDITOR && maximizedWindow !== EDITOR) {
+      setMaximizedWindow(EDITOR);
+    } else if (clickedWindow === PREVIEWER && maximizedWindow !== PREVIEWER) {
+      setMaximizedWindow(PREVIEWER);
+    } else {
+      setMaximizedWindow(NONE);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={styles.body}>
+      <Editor
+        onIconClick={onIconClickHandler}
+        isMaximized={maximizedWindow === EDITOR}
+        isEnabled={maximizedWindow === NONE || maximizedWindow === EDITOR}
+      />
+      <Previewer
+        onIconClick={onIconClickHandler}
+        isMaximized={maximizedWindow === PREVIEWER}
+        isEnabled={
+          maximizedWindow === NONE || maximizedWindow === PREVIEWER
+        }
+      />
     </div>
   );
 }
