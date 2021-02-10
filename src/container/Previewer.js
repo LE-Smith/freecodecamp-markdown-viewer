@@ -22,8 +22,8 @@ const Previewer = props => {
     container: {
       width: props.isMaximized ? '95vw' : 800,
       backgroundColor: '#C0D8D8',
-      height: props.isMaximized ? '95vh' : 'auto',
-      marginTop: 20,
+      minHeight: props.isMaximized ? '95vh' : 'auto',
+      marginTop: props.isMaximized ? 0 : 20,
       marginLeft: 'auto',
       marginRight: 'auto',
       display: props.isEnabled ? 'block' : 'none',
