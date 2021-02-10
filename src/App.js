@@ -10,6 +10,7 @@ export const PREVIEWER = 'PREVIEWER';
 
 function App() {
   const [maximizedWindow, setMaximizedWindow] = useState(NONE);
+  const [markdownInput, setMarkdownInput] = useState('');
 
   const styles = {
     body: {
@@ -31,10 +32,15 @@ function App() {
     }
   };
 
+  const onInputChangeHandler = event => {
+    setMarkdownInput(event.target.value);
+  }
+
   return (
     <div className="App" style={styles.body}>
       <Editor
         onIconClick={onIconClickHandler}
+        onInputChange={onInputChangeHandler}
         isMaximized={maximizedWindow === EDITOR}
         isEnabled={maximizedWindow === NONE || maximizedWindow === EDITOR}
       />
@@ -44,7 +50,7 @@ function App() {
         isEnabled={
           maximizedWindow === NONE || maximizedWindow === PREVIEWER
         }
-        htmlText={"<script></script><h1>Test 1 2 3</h1>"}
+        markdownText={markdownInput}
       />
     </div>
   );

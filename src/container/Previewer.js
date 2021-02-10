@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DOMPurify from 'dompurify';
+import marked from 'marked';
 
 import { PREVIEWER } from '../App';
 
@@ -21,13 +22,15 @@ const Previewer = props => {
     },
     outputContainer: {
       width: '100%',
-      height: props.isMaximized ? 'calc(100% - 27px)' : 150,
+      height: props.isMaximized ? 'calc(100% - 27px)' : 'auto',
+      minHeight: 150,
       textAlign: 'left',
       padding: 5
     },
   };
 
-  const cleanHTML = DOMPurify.sanitize( props.htmlText , {USE_PROFILES: {html: true}} );
+  const dirtyHtml = marked(props.markdownText);
+  const cleanHtml = DOMPurify.sanitize( dirtyHtml, {USE_PROFILES: {html: true}} );
 
   return (
     <div style={styles.container}>
@@ -37,7 +40,7 @@ const Previewer = props => {
         onIconClick={props.onIconClick.bind(this, PREVIEWER)}
       />
       <div style={styles.outputContainer}>
-        <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
+        <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
       </div>
     </div>
   );
