@@ -21,7 +21,6 @@ const Previewer = props => {
 
   return (
     <div style={styles.container}>
-      {/* <Window headerText="Previewer" isMaximized={props.isMaximized} onIconClick={props.onIconClick.bind(this, PREVIEWER)}/> */}
       <WindowHeader
         headerText="Previewer"
         isMaximized={props.isMaximized}

@@ -15,7 +15,7 @@ function App() {
     body: {
       paddingBottom: 20,
       backgroundColor: '#87B5B5',
-      height: '100vh',
+      height: '100%',
       width: '100vw',
       position: 'absolute',
     },
