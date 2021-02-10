@@ -1,5 +1,7 @@
 import React from 'react';
 
+import DOMPurify from 'dompurify';
+
 import { PREVIEWER } from '../App';
 
 import WindowHeader from '../components/WindowHeader';
@@ -17,7 +19,15 @@ const Previewer = props => {
       boxShadow: '1px 1px 10px 2px #3a5f5f',
       border: '1px solid #1d2f2f',
     },
+    outputContainer: {
+      width: '100%',
+      height: props.isMaximized ? 'calc(100% - 27px)' : 150,
+      textAlign: 'left',
+      padding: 5
+    },
   };
+
+  const cleanHTML = DOMPurify.sanitize( props.htmlText , {USE_PROFILES: {html: true}} );
 
   return (
     <div style={styles.container}>
@@ -26,7 +36,8 @@ const Previewer = props => {
         isMaximized={props.isMaximized}
         onIconClick={props.onIconClick.bind(this, PREVIEWER)}
       />
-      <div style={styles.inputContainer}>
+      <div style={styles.outputContainer}>
+        <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
       </div>
     </div>
   );

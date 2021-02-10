@@ -39,7 +39,7 @@ const Editor = props => {
         onIconClick={props.onIconClick.bind(this, EDITOR)}
       />
       <div style={styles.inputContainer}>
-        <textarea style={styles.textArea}>Editor-Input</textarea>
+        <textarea style={styles.textArea}></textarea>
       </div>
     </div>
   );

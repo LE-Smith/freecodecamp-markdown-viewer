@@ -44,6 +44,7 @@ function App() {
         isEnabled={
           maximizedWindow === NONE || maximizedWindow === PREVIEWER
         }
+        htmlText={"<script></script><h1>Test 1 2 3</h1>"}
       />
     </div>
   );
