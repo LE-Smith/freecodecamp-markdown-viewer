@@ -7,6 +7,16 @@ import { PREVIEWER } from '../App';
 
 import WindowHeader from '../components/WindowHeader';
 
+marked.setOptions({
+  pedantic: false,
+  gfm: true,
+  breaks: true,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  xhtml: false
+})
+
 const Previewer = props => {
   const styles = {
     container: {
@@ -24,8 +34,8 @@ const Previewer = props => {
       width: '100%',
       height: props.isMaximized ? 'calc(100% - 27px)' : 'auto',
       minHeight: 150,
-      textAlign: 'left',
-      padding: 5
+      padding: 5,
+      margin: 0
     },
   };
 
@@ -39,8 +49,7 @@ const Previewer = props => {
         isMaximized={props.isMaximized}
         onIconClick={props.onIconClick.bind(this, PREVIEWER)}
       />
-      <div style={styles.outputContainer}>
-        <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
+      <div style={styles.outputContainer}  id="preview" dangerouslySetInnerHTML={{ __html: cleanHtml }}>
       </div>
     </div>
   );

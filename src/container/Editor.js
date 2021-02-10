@@ -10,7 +10,6 @@ const Editor = props => {
       width: props.isMaximized ? '95vw' : 600,
       backgroundColor: '#C0D8D8',
       height: props.isMaximized ? '95vh' : 'auto',
-      marginTop: 20,
       marginLeft: 'auto',
       marginRight: 'auto',
       display: props.isEnabled ? 'block' : 'none',
@@ -39,7 +38,12 @@ const Editor = props => {
         onIconClick={props.onIconClick.bind(this, EDITOR)}
       />
       <div style={styles.inputContainer}>
-        <textarea style={styles.textArea} onChange={props.onInputChange}></textarea>
+        <textarea
+          id="editor"
+          style={styles.textArea}
+          onChange={props.onInputChange}
+          value={props.textAreaValue}
+        ></textarea>
       </div>
     </div>
   );
