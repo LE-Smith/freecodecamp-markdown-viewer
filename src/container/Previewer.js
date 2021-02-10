@@ -26,6 +26,8 @@ const Previewer = props => {
         isMaximized={props.isMaximized}
         onIconClick={props.onIconClick.bind(this, PREVIEWER)}
       />
+      <div style={styles.inputContainer}>
+      </div>
     </div>
   );
 };

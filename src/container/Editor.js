@@ -3,7 +3,6 @@ import React from 'react';
 import { EDITOR } from '../App';
 
 import WindowHeader from '../components/WindowHeader';
-import EditorInput from '../components/EditorInput';
 
 const Editor = props => {
   const styles = {
@@ -21,7 +20,15 @@ const Editor = props => {
     inputContainer: {
       width: '100%',
       height: props.isMaximized ? 'calc(100% - 27px)' : 200,
-    }
+    },
+    textArea: {
+      width: '100%',
+      height: '100%',
+      padding: 5,
+      backgroundColor: '#C0D8D8',
+      outline: 'none',
+      border: 'none',
+    },
   };
 
   return (
@@ -32,7 +39,7 @@ const Editor = props => {
         onIconClick={props.onIconClick.bind(this, EDITOR)}
       />
       <div style={styles.inputContainer}>
-        <EditorInput />
+        <textarea style={styles.textArea}>Editor-Input</textarea>
       </div>
     </div>
   );
